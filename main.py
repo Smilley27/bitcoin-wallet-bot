@@ -41,8 +41,8 @@ def decode_base58(bc, length):
 
 def check_address(bc):
     try:
-        bcbytes = decode_base58(bc, 25)
-        return bcbytes[-4:] == sha256(sha256(bcbytes[:-4]).digest()).digest()[:4]
+        babes = decode_base58(bc, 25)
+        return babes[-4:] == sha256(sha256(babes[:-4]).digest()).digest()[:4]
     except Exception:
         return False
 
@@ -101,7 +101,7 @@ def process_step(message):
 
 def get_address(message):
     current_user_id = message.from_user.id
-    current_wallet = wallet_exist(current_user_id)
+    current_wallet = wallet_exist(_user_id)
     current_key = Key(current_wallet[1])
     solde = decimal.Decimal(current_key.get_balance('btc'))
     global destinataire
